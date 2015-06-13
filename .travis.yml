@@ -1,0 +1,67 @@
+language: cpp
+
+compiler: gcc
+
+notifications:
+  irc:
+    channels:
+      - "irc.quakenet.org#unrealarena"
+    template:
+      - "%{repository_slug} (%{branch}) \"%{commit_message}\" [%{result}]"
+      - "%{build_url}"
+      - "%{compare_url}"
+
+env:
+  - MAP=campgrounds
+
+before_install:
+  - travis_retry sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - travis_retry sudo apt-get -qq update
+
+install:
+  - travis_retry sudo apt-get -qq install gcc-4.9 g++-4.9 libxml2 libglib2.0-0 libpng12-0 libjpeg-turbo8 libc6 zlib1g libpcre3
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 100 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
+  - travis_retry git clone https://github.com/xonotic/netradient.git
+  - cd netradient && make -j8 BUILD=native DEPENDENCIES_CHECK=off binaries-q3map2 && cd ..
+  - export PATH="netradient/install:${PATH}"
+
+before_script:
+  - export HOMEPATH="${HOME}/.unrealarena/pkg"
+  - export MAPVERSION=$(cat "maps/${MAP}/VERSION")
+  - export CMNVERSION=$(cat "data/VERSION")
+  - export PAKVERSION=$(cat "VERSION")
+  - mkdir -pv "${HOMEPATH}"
+  - cd data && zip -r9 "${HOMEPATH}/maps-common_${CMNVERSION}.pk3" * && cd ..
+
+script:
+  - q3map2 -threads 8 -fs_homebase .unrealarena -fs_game pkg -meta -custinfoparms -keeplights "maps/${MAP}/maps/${MAP}.map"
+  - q3map2 -threads 8 -fs_homebase .unrealarena -fs_game pkg -vis -saveprt "maps/${MAP}/maps/${MAP}.map"
+  - q3map2 -threads 8 -fs_homebase .unrealarena -fs_game pkg -light -faster "maps/${MAP}/maps/${MAP}.map"
+  - cd "maps/${MAP}" && zip -r9 "../../map-${MAP}_${MAPVERSION}.pk3" * && cd ../..
+  - zip -d "map-${MAP}_${MAPVERSION}.pk3" "maps/${MAP}.srf" "maps/${MAP}.prt"
+
+# after_success:
+
+# after_failure:
+
+# after_script:
+
+before_deploy:
+  - mv -v "${HOMEPATH}/maps-common_${CMNVERSION}.pk3" .
+  - zip -9 "maps-common_${PAKVERSION}.pre.zip" "maps-common_${CMNVERSION}.pk3"
+  - zip -9 "map-${MAP}_${PAKVERSION}.pre.zip" "map-${MAP}_${MAPVERSION}.pk3"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: A8zXEDjbr+gXQAhL7avoaDfCa2LyPp+JcrYXHsoJRs6uaU5Q7LfwHIE6lHyiI/4wLqcTD9dXeoFuw2uFDw8/mGS8vaGcWyCDlCZPneARhq7HkdL3g95/R0xJXfVCCMjr9/CgpAgCLHqPSG67zj7QYy52W4SDGjXsn+nf+6BF6s2Tl9yQ/4NS8a82zqLdp81bUV0qeIL5ozdYw4SOobG2FJL7ITFiRlICZVEgDmXhqG9HUEQ1Z5Atg1a6HcKKgtuJkw+4P8NhaNl9/jXARPMpPLtn5nyrh8k8sLexyQ7c49EhgJDR5y6tsqMs2pv4m62guN9NZqM34t+lnsoIw2bcDH5hueCvVrDeIoUNHNL3cil5o7QfHdHsQ4xLRaou4KqpT3Nff9kDRzotEDQkDd0oHBmLaRHja+MXvmP7Rvsknxbyz6DKFqNHIcsn0STyhoT0tLwx4dzVRlUynB2X0jmAXu1vIg0L/6/SWfvpgVzwF1xNhO6yzGRhEmXNwrvwvLuXt+Fnu4O1BDgV0vEg/Tvmpl+6liZ8QlD6P9okJ+YWU5/CrO9TMhGfXj/rK4BI+IMigWqt9PM4eIEe2nqvYKaurdzaIFaOz/7rIMkk9kIQ6NftQtccZUiX2/Vkwnbj0b0pJS6wtR7Sp1Rcw+vmEDVWuTgUqFJUBnHhQuLrDX4YsPQ=
+  file:
+    - "maps-common_${PAKVERSION}.pre.zip"
+    - "map-${MAP}_${PAKVERSION}.pre.zip"
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
+    repo: unrealarena/unrealarena-maps
+
+# after_deploy:
