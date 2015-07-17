@@ -1,0 +1,12 @@
+ABOUT
+
+	Campgrounds is a remake of the original pro-q3dm6 map included in Quake III Arena.
+
+
+LICENSING
+
+maps/*
+
+	Author : Patrick 'Kaffeewunder' Horn
+
+	License: Creative Commons Attribution-ShareAlike 4.0 International
