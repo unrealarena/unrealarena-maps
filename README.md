@@ -1,4 +1,6 @@
-# Unreal Arena - Maps  [![Build Status](https://travis-ci.org/unrealarena/unrealarena-maps.svg?branch=master)](https://travis-ci.org/unrealarena/unrealarena-maps)
+[![Build Status](https://travis-ci.org/unrealarena/unrealarena-maps.svg?branch=master)](https://travis-ci.org/unrealarena/unrealarena-maps)
+
+# Unreal Arena - Maps
 
 This repository contains the official maps of Unreal Arena.
 
