@@ -7999,12 +7999,6 @@ dev/grid_64_wall
 // entity 7
 {
 "classname" "pos_player_intermission"
-"origin" "264.000000 200.000000 496.000000"
-"target" "view1"
-}
-// entity 8
-{
-"classname" "target_position"
-"origin" "-144.000000 -192.000000 396"
-"targetname" "view1"
+"origin" "272.000000 208.000000 496.000000"
+"angles" "11.482703 223.683088 0.000000"
 }
