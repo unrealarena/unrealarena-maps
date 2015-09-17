@@ -7936,18 +7936,6 @@ dev/grid_64_wall
 }
 // entity 2
 {
-"classname" "info_notnull"
-"origin" "-896.000000 640.000000 668.000000"
-"targetname" "t3"
-}
-// entity 3
-{
-"classname" "info_notnull"
-"origin" "192.000000 832.000000 644.000000"
-"targetname" "t2"
-}
-// entity 4
-{
 "classname" "trigger_push"
 "target" "t2"
 // brush 0
@@ -7968,13 +7956,7 @@ dev/grid_64_wall
 ( 176 818.4949951172 264 ) ( 176 818.4949951172 256 ) ( 163.453994751 796.5399932861 256 ) common/trigger -0 0 0 0.5 0.5 0 0 0
 }
 }
-// entity 5
-{
-"classname" "info_notnull"
-"targetname" "t1"
-"origin" "0.000000 -384.000000 652.000000"
-}
-// entity 6
+// entity 3
 {
 "classname" "trigger_push"
 "target" "t1"
@@ -7996,9 +7978,27 @@ dev/grid_64_wall
 ( 48 -333.4989929199 8 ) ( 48 -333.4989929199 0 ) ( 35.453994751 -355.4550018311 0 ) common/trigger 0 0 0 0.25 0.25 0 0 0
 }
 }
-// entity 7
+// entity 4
 {
 "classname" "pos_player_intermission"
 "origin" "272.000000 208.000000 496.000000"
 "angles" "11.482703 223.683088 0.000000"
+}
+// entity 5
+{
+"classname" "pos_target"
+"targetname" "t1"
+"origin" "0.000000 -384.000000 652.000000"
+}
+// entity 6
+{
+"classname" "pos_target"
+"origin" "-896.000000 640.000000 668.000000"
+"targetname" "t3"
+}
+// entity 7
+{
+"classname" "pos_target"
+"origin" "192.000000 832.000000 644.000000"
+"targetname" "t2"
 }
