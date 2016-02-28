@@ -9,17 +9,15 @@ notifications:
     channels:
       - "irc.quakenet.org#unrealarena"
     template:
-      - "%{repository_slug} (%{branch}) \"%{commit_message}\" [%{result}]"
+      - "%{repository_slug} (%{branch}) \"%{commit_subject}\" [%{result}]"
       - "%{build_url}"
       - "%{compare_url}"
 
 env:
   global:
     - PATH="${TRAVIS_BUILD_DIR}/netradient/install:${PATH}"
-    - HOMEPATH="${HOME}/.unrealarena/pkg"
+    - HOMEPATH="${HOME}/.unrealarena"
     - TAG="$(git describe --abbrev=0 HEAD^)"
-    - CMNVERSION="$(git show :data/VERSION)"
-    - TAGCMNVERSION="$(git show ${TAG}:data/VERSION)"
   matrix:
     - MAP=campgrounds
       MAPVERSION="$(git show :maps/${MAP}/VERSION)"
@@ -44,9 +42,7 @@ deploy:
   provider: releases
   api_key:
     secure: wNC/c/1o85wgJwJkEdfluDgNo6mOTL9rxCzxU+ZutsdODdT11GEfeXfBYyPINAqaEa7b6oZX4FXX0M8N0M9I51pSIUmuGdYr0qM/OqxEcL4y6L6mLivCA358zpPhmYus0EuzgJO/2Uy4TlrjNBOov64IT6xNsZ9t11ELurg0tH/KG4OMqRHBJu/Iwi3Uls0Q2/QdiCU9YT4En8Sd61DxieyXU3FiUGD3CFhEl7GbFnURNMHh+3r2T9/CvI2QQgp1vD9lZZH08poNZmmkxuv/HyST7/aAzlwDkNNBuIaW5YvCAuK824rWr8NGp7Zqlc1gR+qyU2hWLDMv3ot/XEQPO3rbehAsyzYqjSrQJScWwPKdq3cI7NttlI3CnCtaEQNpLFitc9n97fg0odcizaOUjwzLANUDZabLE//zm7aXqCB1VcmW8CMcq4um3twV91M49kbrYl9612F/luFewRK6M2UTqELa88VWXKjIg9E6PWlvF0UkhN81iJXuRiCLQsLosCJ85YNlOMx1sVKLKr5hxmvzTAB8SV0tWrroENTCa4uiI8UQ6YVs7TCYoFI+RPVFVfdnI8nxwMdS0cbHEp8Rtb8XHL3DxH4maOHWVSOcDn4AnpPKfzxUoiVs4LK009WtI88eYYbmY59oeElel7Hknq35+0jFEF4v2jRS1AsnkqA=
-  file:
-    - "maps-common.pre.zip"
-    - "map-${MAP}.pre.zip"
+  file: "map-${MAP}.pre.zip"
   skip_cleanup: true
   prerelease: true
   on:
