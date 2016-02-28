@@ -6,6 +6,8 @@ ABOUT
 LICENSING
 
 maps/*
+scripts/*
+textures/*
 
 	Author : Patrick 'Kaffeewunder' Horn
 
