@@ -4,7 +4,7 @@
 // Usually used on the non-visible sides of regular brushes.
 textures/common/caulk
 {
-	qer_editorimage textures/radiant/caulk
+	qer_editorimage textures/common/caulk
 
 	surfaceparm nodraw
 }
@@ -12,7 +12,7 @@ textures/common/caulk
 // Defines trigger areas.
 textures/common/trigger
 {
-	qer_editorimage textures/radiant/trigger
+	qer_editorimage textures/common/trigger
 
 	qer_nocarve
 	qer_trans 0.5
