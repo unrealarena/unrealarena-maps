@@ -77,7 +77,7 @@ script() {
 	q3map2 -threads 8 -fs_homebase .unrealarena -fs_game pkg -light\
 	                                                         -faster\
 	                                                         "maps/${MAP}.map"
-	zip -r9 "../../map-${MAP}_${MAPVERSION}.pk3" . -x "maps/${MAP}.{srf,prt}"
+	zip -r9 "../../map-${MAP}_${MAPVERSION}.pk3" . -x "maps/${MAP}.srf" "maps/${MAP}.prt"
 }
 
 # before_deploy
