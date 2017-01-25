@@ -19,3 +19,16 @@ textures/common/trigger
 
 	surfaceparm nodraw
 }
+
+// Defines playerclip areas.
+textures/common/playerclip
+{
+	qer_editorimage textures/common/playerclip
+
+	qer_trans 0.4
+
+	surfaceparm nodraw
+	surfaceparm nonsolid
+	surfaceparm playerclip
+	surfaceparm trans
+}
