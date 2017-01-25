@@ -44,21 +44,3 @@ textures/dev/grid_64_8_stairtrim
 
 	diffuseMap textures/dev/grid_64_8_stairtrim_d
 }
-
-textures/dev/grid_128_8_border
-{
-	qer_editorimage textures/dev/grid_128_8_border_d
-
-	surfaceparm nolightmap
-
-	diffuseMap textures/dev/grid_128_8_border_d
-}
-
-textures/dev/grid_128_16_border
-{
-	qer_editorimage textures/dev/grid_128_16_border_d
-
-	surfaceparm nolightmap
-
-	diffuseMap textures/dev/grid_128_16_border_d
-}
