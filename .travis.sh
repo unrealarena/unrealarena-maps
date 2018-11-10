@@ -36,6 +36,7 @@ fi
 # before_install
 before_install() {
 	sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+	sudo add-apt-repository -y ppa:maciej-puzio/backports
 	sudo apt-get -qq update
 }
 
@@ -43,14 +44,14 @@ before_install() {
 install() {
 	sudo apt-get -qq install gcc-4.7\
 	                         g++-4.7\
-	                         libc6\
-	                         libglib2.0-0\
-	                         libjpeg-turbo8\
-	                         libpcre3\
-	                         libpng12-0\
-	                         libxml2\
+	                         libglib2.0-dev\
+	                         libjpeg-turbo8-dev\
+	                         libminizip-dev\
+	                         libpng12-dev\
+	                         libwebp-dev\
+	                         libxml2-dev\
 	                         zip\
-	                         zlib1g
+	                         zlib1g-dev
 	sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 100\
 	                         --slave   /usr/bin/g++ g++ /usr/bin/g++-4.7
 	git clone https://github.com/xonotic/netradient.git
